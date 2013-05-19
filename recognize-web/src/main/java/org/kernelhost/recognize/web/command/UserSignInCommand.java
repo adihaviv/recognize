@@ -26,7 +26,7 @@ public class UserSignInCommand implements SignInAdapter {
 		
 		HttpSession session = request.getNativeRequest(HttpServletRequest.class).getSession();
 		
-		return userId;
+		return null;
 	}
 
 }

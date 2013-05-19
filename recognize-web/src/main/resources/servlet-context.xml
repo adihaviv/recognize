@@ -42,6 +42,6 @@
 		</property>
 	</bean>
 	
-	<import resource="classpath:facebook-context.xml" />
+	<import resource="classpath:social-context.xml" />
 	
 </beans>

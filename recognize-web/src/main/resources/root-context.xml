@@ -10,5 +10,6 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 		
 	<import resource="classpath:core-context.xml" />
+	<import resource="classpath:security-context.xml" />
 		
 </beans>
