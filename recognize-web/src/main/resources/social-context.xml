@@ -22,6 +22,10 @@
 		<property name="connectionSignUp" ref="newUserSignUpCommand" />
 	</bean>
 
-	<bean class="org.springframework.social.connect.web.ProviderSignInController" />
+	<bean class="org.springframework.social.connect.web.ProviderSignInController" >
+		<property name="signInUrl" value="/" />
+		<property name="signUpUrl" value="/" />
+		<property name="postSignInUrl" value="/" />
+	</bean>
 
 </beans>
