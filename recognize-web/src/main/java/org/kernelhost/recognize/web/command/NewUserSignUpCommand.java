@@ -6,6 +6,7 @@ import org.springframework.social.connect.ConnectionData;
 import org.springframework.social.connect.ConnectionKey;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.ConnectionSignUp;
+import org.springframework.social.connect.NoSuchConnectionException;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.stereotype.Component;
 
@@ -14,17 +15,18 @@ public class NewUserSignUpCommand implements ConnectionSignUp {
 
 	@Autowired
 	private UsersConnectionRepository usersConnectionRepository;
-	
+
 	@Override
 	public String execute(Connection<?> connection) {
 		ConnectionData connectionData = connection.createData();
 		String userId = connectionData.getProviderUserId();
 		ConnectionRepository connectionRepository = usersConnectionRepository.createConnectionRepository(userId);
-		Connection<?> existingConnection = connectionRepository.getConnection(new ConnectionKey(connectionData.getProviderId(), userId));
-		if (existingConnection == null) {
-			connectionRepository.updateConnection(connection);
+		try {
+			connectionRepository.getConnection(new ConnectionKey(connectionData.getProviderId(), userId));
+		} catch (NoSuchConnectionException e) {
+			connectionRepository.addConnection(connection);
 		}
-		
+
 		return userId;
 	}
 
