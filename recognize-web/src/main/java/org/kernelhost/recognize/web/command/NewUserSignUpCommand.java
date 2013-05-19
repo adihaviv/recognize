@@ -10,7 +10,7 @@ import org.springframework.social.connect.NoSuchConnectionException;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.stereotype.Component;
 
-@Component("newUserSignUpCommand")
+@Component
 public class NewUserSignUpCommand implements ConnectionSignUp {
 
 	@Autowired
